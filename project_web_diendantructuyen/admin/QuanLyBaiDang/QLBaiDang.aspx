@@ -5,6 +5,10 @@
         .auto-style1 {
             text-align: center;
         }
+        .auto-style3 {
+            width: 479px;
+            text-align: right;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -16,22 +20,30 @@
                 <table style="width: 100%;">
                     <tr>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="auto-style3">Số bài chưa duyệt</td>
+                        <td>
+                            <asp:Label ID="SLChuaDuyet" runat="server" Text="Label"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="auto-style3">Số bài đã duyệt</td>
+                        <td>
+                            <asp:Label ID="SLDaDuyet" runat="server" Text="Label"></asp:Label>
+                        </td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
-                        <td>&nbsp;</td>
-                        <td>&nbsp;</td>
+                        <td class="auto-style3">Số bài không duyệt</td>
+                        <td>
+                            <asp:Label ID="SLKhongDuyet" runat="server" Text="Label"></asp:Label>
+                        </td>
                     </tr>
                 </table>
             </p>
-            <asp:GridView ID="DsBaiDang" runat="server" AutoGenerateColumns="false" OnRowCommand="DsBaiDang_RowCommand">
+            <asp:GridView ID="DsBaiDang" runat="server" AutoGenerateColumns="false"
+                OnRowCommand="DsBaiDang_RowCommand" AllowPaging="true" PageSize="3"
+                OnPageIndexChanging="DsBaiDang_PageIndexChanging">
                 <Columns>
                     <asp:BoundField DataField="MaBaiDang" HeaderText="Mã bài đăng" />
                     <%--<asp:BoundField DataField="tieude" HeaderText="Tiêu đề bài viết" />--%>
@@ -47,10 +59,10 @@
                     <asp:BoundField DataField="hoten" HeaderText="Tên Người đăng" />
                     <asp:BoundField DataField="tenchude" HeaderText="Tên chủ đề" />
                 </Columns>
+                <%--option tự chọn cho phân trang--%>
+                <%--<PagerSettings FirstPageText="First Page" LastPageText="Last Page" Mode="NumericFirstLast" Position="TopAndBottom" />--%>
+                <PagerStyle CssClass="pager-row" />
             </asp:GridView>
         </form>
     </div>
-
-
-
 </asp:Content>

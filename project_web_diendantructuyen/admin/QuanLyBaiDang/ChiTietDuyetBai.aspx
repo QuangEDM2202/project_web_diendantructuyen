@@ -9,8 +9,11 @@
             width: 550px;
             text-align: right;
         }
-        .auto-style3 {
-            width: 529px;
+        .auto-style4 {
+            margin-top: 0px;
+        }
+        .auto-style5 {
+            width: 514px;
             text-align: right;
         }
     </style>
@@ -70,11 +73,13 @@
         </table>
         <table style="width: 100%;">
             <tr>
-                <td class="auto-style3">
-                    <asp:Button ID="btnDuyet" runat="server" OnClick="btnDuyet_Click" Text="Duyệt bài viết này" />
+                <td class="auto-style5">
+                    <asp:Button ID="btnDuyet" runat="server" OnClick="btnDuyet_Click" Text="Duyệt bài viết này" 
+                        OnClientClick='return confirm("Are you sure?");' CssClass="auto-style4" Height="28px" Width="142px"/>
                 </td>
                 <td>
-                    <asp:Button ID="btnKhongDuyet" runat="server" Text="Không duyệt bài viết" Width="161px" />
+                    <asp:Button ID="btnKhongDuyet" runat="server" Text="Không duyệt bài viết" OnClientClick='return confirm("Are you sure?");'
+                        Width="161px" Height="28px" OnClick="btnKhongDuyet_Click" />
                 </td>
             </tr>
             </table>

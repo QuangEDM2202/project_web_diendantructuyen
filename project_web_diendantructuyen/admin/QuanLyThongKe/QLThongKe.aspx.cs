@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,17 +11,34 @@ namespace project_web_diendantructuyen.admin.QuanLyThongKe
 {
     public partial class QLThongKe : System.Web.UI.Page
     {
+        string constr = @"Data Source=DESKTOP-MGQTNA9\SQLEXPRESS;Initial Catalog=project_web_diendantructuyen;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                string strHTML = "<p>Hello World!</p></br><h3>How to i send you a love</h3>";
-                // dung encode va decode de giai quyet
-                //encode la luu cac the y het vao db dung de luu vao
-                //decode la hien thi no ra. dung de doc ra
-                Label1.Text = Server.HtmlEncode(strHTML);
-                //Label1.Text = (strHTML);
+                loadTongSoThanhVien();
             }
         }
+        void loadTongSoThanhVien()
+        {
+            using (SqlConnection cnn = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "sp_ThongKeTungMuc";
+                    //cmd.Parameters.AddWithValue("@HoTen", ten);
+                    using (SqlDataAdapter ad = new SqlDataAdapter(cmd))
+                    {
+                        DataTable tb = new DataTable();
+                        ad.Fill(tb);
+                        GridViewThongKe.DataSource = tb;
+                        GridViewThongKe.DataBind();
+                    }
+                }
+            }
+        }
+
     }
 }

@@ -22,6 +22,33 @@ namespace project_web_diendantructuyen.admin.QuanLyBaiDang {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// SLChuaDuyet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SLChuaDuyet;
+        
+        /// <summary>
+        /// SLDaDuyet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SLDaDuyet;
+        
+        /// <summary>
+        /// SLKhongDuyet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label SLKhongDuyet;
+        
+        /// <summary>
         /// DsBaiDang control.
         /// </summary>
         /// <remarks>

@@ -17,9 +17,8 @@ namespace project_web_diendantructuyen.admin.QuanLyBaiDang
             if (!IsPostBack)
             {
                 loadDSBaiDang();
-                
+                loadThongTin();
             }
-
         }
         void loadDSBaiDang()
         {
@@ -41,6 +40,27 @@ namespace project_web_diendantructuyen.admin.QuanLyBaiDang
                 }
             }
         }
+        void loadThongTin()
+        {
+            using (SqlConnection cnn = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "sp_DemSLTungLoaiBaiDang";
+                    cnn.Open();
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        SLChuaDuyet.Text = Convert.ToString(rd.GetInt32(0));
+                        SLDaDuyet.Text= Convert.ToString(rd.GetInt32(1));
+                        SLKhongDuyet.Text = Convert.ToString(rd.GetInt32(2));
+                    }
+                    rd.Close();
+                }
+            }
+        }
 
         protected void DsBaiDang_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -49,6 +69,12 @@ namespace project_web_diendantructuyen.admin.QuanLyBaiDang
                 int MaBaiDang = Convert.ToInt16(e.CommandArgument);
                 Response.Redirect("ChiTietDuyetBai.aspx?idChiTietBaiDang="+ MaBaiDang+"");
             }
+        }
+
+        protected void DsBaiDang_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            DsBaiDang.PageIndex = e.NewPageIndex;
+            loadDSBaiDang();
         }
     }
 }
